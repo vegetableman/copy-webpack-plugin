@@ -54,6 +54,7 @@ function CopyWebpackPlugin(patterns = [], options = {}) {
                 relDest = pattern.to || '';
 
                 const forceWrite = Boolean(pattern.force);
+                const writeOnDevServer = Boolean(pattern.writeOnDevServer);
 
                 return fs
                     .statAsync(absSrc)
@@ -75,6 +76,7 @@ function CopyWebpackPlugin(patterns = [], options = {}) {
                                 copyUnmodified,
                                 flatten: pattern.flatten,
                                 forceWrite,
+                                writeOnDevServer,
                                 ignoreList,
                                 relDirDest: relDest,
                                 writtenAssetHashes
@@ -137,6 +139,7 @@ function CopyWebpackPlugin(patterns = [], options = {}) {
                                     compilation,
                                     copyUnmodified,
                                     forceWrite,
+                                    writeOnDevServer,
                                     relFileDest,
                                     writtenAssetHashes
                                 });

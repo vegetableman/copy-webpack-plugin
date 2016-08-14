@@ -14,6 +14,7 @@ export default (opts) => {
     const relDirDest = opts.relDirDest;
     const flatten = opts.flatten;
     const forceWrite = opts.forceWrite;
+    const writeOnDevServer = opts.writeOnDevServer;
     const ignoreList = opts.ignoreList;
     const copyUnmodified = opts.copyUnmodified;
     const writtenAssetHashes = opts.writtenAssetHashes;
@@ -46,6 +47,7 @@ export default (opts) => {
                 compilation,
                 copyUnmodified,
                 forceWrite,
+                writeOnDevServer,
                 relFileDest,
                 writtenAssetHashes
             });

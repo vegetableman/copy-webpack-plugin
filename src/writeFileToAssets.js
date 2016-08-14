@@ -16,6 +16,7 @@ export default (opts) => {
     const forceWrite = opts.forceWrite;
     const copyUnmodified = opts.copyUnmodified;
     const writtenAssetHashes = opts.writtenAssetHashes;
+    const writeOnDevServer = opts.writeOnDevServer;
 
     if (compilation.assets[relFileDest] && !forceWrite) {
         return Promise.resolve();
@@ -28,6 +29,11 @@ export default (opts) => {
         // We don't write empty directories
         if (stat.isDirectory()) {
             return;
+        }
+
+        function write() {
+            const source = fs.readFileSync(absFileSrc);
+            fs.writeFileSync(relFileDest) = source;
         }
 
         function addToAssets() {
@@ -44,7 +50,7 @@ export default (opts) => {
         }
 
         if (copyUnmodified) {
-            return addToAssets();
+            return writeOnDevServer ? write() : addToAssets();
         }
 
         return fs.readFileAsync(absFileSrc)
@@ -55,7 +61,7 @@ export default (opts) => {
             }
 
             writtenAssetHashes[relFileDest] = hash;
-            return addToAssets();
+            return writeOnDevServer ? write() : addToAssets();
         });
     });
 };
