@@ -33,7 +33,7 @@ export default (opts) => {
 
         function write() {
             const source = fs.readFileSync(absFileSrc);
-            fs.writeFileSync(relFileDest) = source;
+            fs.writeFileSync(relFileDest, source);
         }
 
         function addToAssets() {
