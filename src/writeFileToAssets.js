@@ -1,4 +1,5 @@
 import Promise from 'bluebird';
+import path from 'path';
 
 /* eslint-disable import/no-commonjs */
 const fs = Promise.promisifyAll(require('fs-extra'));
@@ -33,6 +34,7 @@ export default (opts) => {
 
         function write() {
             const source = fs.readFileSync(absFileSrc);
+            fs.ensureDirSync(path.dirname(relFileDest));
             fs.writeFileSync(relFileDest, source);
         }
 

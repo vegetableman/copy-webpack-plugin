@@ -8,6 +8,10 @@ var _bluebird = require('bluebird');
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
+var _path = require('path');
+
+var _path2 = _interopRequireDefault(_path);
+
 var _crypto = require('crypto');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -39,6 +43,7 @@ exports.default = function (opts) {
 
         function write() {
             var source = fs.readFileSync(absFileSrc);
+            fs.ensureDirSync(_path2.default.dirname(relFileDest));
             fs.writeFileSync(relFileDest, source);
         }
 
